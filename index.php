@@ -22,7 +22,7 @@
 				<div class="field" id="connection_port_field">
 					<label>
 						<div class="label">Port:</div>
-						<input name="connection_port" id="connection_port" value="3306" />
+						<input name="connection_port" id="connection_port" value="8889" />
 					</label>
 				</div>
 				<div class="field" id="connection_user_field">
@@ -34,7 +34,7 @@
 				<div class="field" id="connection_pass_field">
 					<label>
 						<div class="label">Password:</div>
-						<input name="connection_pass" id="connection_pass" />
+						<input name="connection_pass" id="connection_pass" value="root" />
 					</label>
 				</div>
 				<div class="grid_4 push_2">
@@ -61,9 +61,10 @@
 					</thead>
 					<tbody></tbody>
 				</table>
-				<div class="grid_4 push_2">
+				<br>
+				<div class="grid_5 push_1">
 					<button onclick="generate();">Generate</button>
-					<button onclick="configure();">Configure</button>
+					<button class="push_1" onclick="configure();">Configure</button>
 				</div>
 			</fieldset>
 		</div>

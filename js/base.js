@@ -73,6 +73,7 @@ function use(database){
 		success: function(data){
 			if(tables != undefined){ tables.fnDestroy(); tables = undefined;}
 			$("#tables table tbody").html(data);
+			$("#tables table thead tr:first th:first").html("Tables of "+database);
 			tables = $("#tables table").dataTable({
 				"bJQueryUI": true,
 				"bLengthChange": false,

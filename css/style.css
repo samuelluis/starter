@@ -34,9 +34,14 @@ html{
 	margin: 10px 0px;
 }
 
-#connection fieldset button{
+fieldset button{
 	width: 100px;
 	height: 30px;
+}
+
+#databases fieldset button{
+	width: 60px;
+	height: 25px;
 }
 
 #connection fieldset input{

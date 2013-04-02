@@ -37,7 +37,7 @@
 		$database = $_POST["database"];
 		
 		$link = mysql_connect("{$server}:{$port}", "{$user}", "{$pass}");
-		mysql_select_db("{$database}", $link);
+		mysql_select_db("information_schema", $link);
 		$rs = mysql_query("select TABLE_NAME from TABLES where TABLE_SCHEMA='{$database}'");
 
 		while($table = mysql_fetch_array($rs)) {
