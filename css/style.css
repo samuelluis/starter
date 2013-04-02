@@ -1,5 +1,6 @@
 @import url('dark/jqueryui.css');
 @import url('960.css');
+@import url('datatable.css');
 
 html{
 	background: #7db9e8; /* Old browsers */
@@ -12,7 +13,7 @@ html{
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#044999',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
-#connection fieldset{
+.section fieldset{
 	padding: 20px;
 	border: 0px;
 	-webkit-border-radius: 10px;
@@ -21,4 +22,50 @@ html{
 	-moz-box-shadow: 0 0 10px #000000;
 	-webkit-box-shadow: 0 0 10px #000000;
 	box-shadow: 0 0 10px #000000;
+}
+
+.section{
+	margin-top: 30px;
+	display: block;
+	clear: both;
+}
+
+#connection fieldset .field{
+	margin: 10px 0px;
+}
+
+#connection fieldset button{
+	width: 100px;
+	height: 30px;
+}
+
+#connection fieldset input{
+	width: 200px;
+	height: 30px;
+	text-indent: 5px;
+	border: 1px solid whitesmoke;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+#connection fieldset .label{
+	width: 117px;
+	text-align: right;
+	margin-right: 15px;
+	display: inline;
+	float: left;
+}
+
+table{
+	width: 100%;
+}
+
+table td{
+	text-align: center;
+}
+
+.DataTables_sort_icon{
+	display: inline;
+	float: right;
 }

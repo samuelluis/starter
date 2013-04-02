@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+// global object
+var folder = new Object;
+function displayDate()
+{
+document.getElementById("demo").innerHTML=Date();
+}
+function init() {
+// big initialization - generated code from perl perusal of directories
+// I think my big breakthrough was to learn about Javascript objects and their properties
+// from the book Javascript The Definitive Guide, 5th edition by D.Flanagan
+// Some additional inspiration came from http://www.quirksmode.org/dom/intro.html#create
+// folder is an associative array with properties path, state,depth and kids (which is itself an array)
+// first entry is initial top-level to get things started
+  folder['browse'] = {path:'',depth:0,kids:['homepic']};
+// regular entries:
+  folder['/homepic'] = {path:'/homepic',depth:1,kids:['kodak_pictures','pictures_chronological']};
+// values for sub-folders
+// /homepic/kodak_pictures
+  folder['/homepic/kodak_pictures'] = {path:'/homepic/kodak_pictures',depth:2,kids:['2002_05','2002_06']};
+// /homepic/pictures_chronological
+  folder['/homepic/pictures_chronological'] = {path:'/homepic/pictures_chronological',depth:2,kids:['2011_11','2011_12']};
+}
+function browse(f) {
+document.getElementById("demo").innerHTML="folder: "+f+" ";
+var icon;
+var imgid;
+var fname;
+var table;
+if (f == "browse") {
+// one-time initialization
+  init();
+}
+ 
+imgid = 'icon-' + f;
+if (!folder[f]) {
+// folder not defined: must be a terminal folder. Do something here eventually
+// but for now do nothing whatsoever
+} else {
+  if (folder[f].state === undefined || folder[f].state == 'closed') {
+  // change img to one of open folder
+    if (f == 'browse') {
+      document.getElementById(f).innerHTML='';
+    } else {
+      document.getElementById(imgid).src = "/icons/folder.open.gif";
+    }
+    var kids = folder[f].kids;
+    for(var i=0;  i < kids.length; i++) {
+      table = document.createElement("table");
+      table.border = 0;
+      var row = document.createElement("tr");
+      var td1 = document.createElement("td");
+      var td2 = document.createElement("td");
+      var td3 = document.createElement("td");
+      icon = document.createElement("img");
+      icon.src = "/icons/folder.gif";
+      if (f == "browse") {
+        fname = "/" + kids[i];
+      } else {
+        fname = f + "/" + kids[i];
+      }
+      icon.id = "icon-" + fname;
+      if (folder[fname])
+        folder[fname].state = 'closed';
+      icon.onclick = Function('browse("'+fname+'")');
+      td1.width = 27 + folder[folder].depth*27;
+      td1.align = "right";
+      td1.appendChild(icon);
+      var node = document.createTextNode(kids[i]);
+      td3.appendChild(node);
+      row.appendChild(td1); row.appendChild(td2); row.appendChild(td3);
+      table.appendChild(row);
+      document.getElementById(f).appendChild(table);
+      var divfolder = document.createElement("div");
+      divfolder.id = fname;
+      document.getElementById(f).appendChild(divfolder);
+      folder[f].state = 'open';
+    } // end loop over children
+  } else {
+  // set folder to closed state
+  // this innerHTML nullification is kind of a kludge, but it works
+    document.getElementById(f).innerHTML='';
+    document.getElementById(imgid).src = "/icons/folder.gif";
+    folder[f].state = 'closed';
+  } // end conditional over folder state
+} // end condition over whether folder is defined or not
+} // end function browse
+ 
+</script>
+</head>
+<body>
+ 
+<h1>Folder Browser</h1>
+<p id="demo">Debug Aid.</p>
+<p id="browse"><a href="#" onclick='browse("browse")'>Folder Browser</a></p>
+</body>
+</html>
